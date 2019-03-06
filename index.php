@@ -128,7 +128,7 @@ $app->post('/admin/users/:iduser', function($iduser){
 
     $user = new User();
 
-    $_POST["inadmin"] = (isset($_POST["inadimin"]))?1:0;
+    $_POST["inadmin"] = (isset($_POST["inadmin"]))?1:0;
 
     $user->get((int)$iduser);
 
@@ -138,6 +138,36 @@ $app->post('/admin/users/:iduser', function($iduser){
 
     header("Location: /admin/users");
     exit;
+});
+
+$app->get('/admin/forgot', function(){
+
+    $page = new PageAdmin([
+        "header"=>false,
+        "footer"=>false
+    ]);
+
+    $page->setTPL("forgot");
+
+});
+
+$app->post("/admin/forgot", function(){
+
+    $user = User::getForgot($_POST['email']);
+
+    header("Location: /admin/forgot/sent");
+    exit;
+});
+
+$app->get("/admin/forgot/sent", function(){
+
+    $page = new PageAdmin([
+        "header"=>false,
+        "footer"=>false
+    ]);
+
+    $page->setTPL("forgot-sent");    
+
 });
 
 $app->run();
