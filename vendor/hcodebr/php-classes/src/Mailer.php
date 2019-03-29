@@ -7,10 +7,10 @@ class Mailer
 {
 
     const USERNAME = 'rafael.cavallin89@gmail.com';
-    const PASSWORD = 'teste';
+    const PASSWORD = 'sistemasulbra';
     const NAME_FROM = 'Hcode Store';
 
-    private $this->mail;
+    private $mail;
 
     public function __construct($toAddress, $toName, $subject, $tplName, $data = array())
     {   
@@ -51,7 +51,7 @@ class Mailer
 
         $this->mail->Password = Mailer::PASSWORD;
 
-        $this->mail->setForm(Mailer::USERNAME, Mailer::NAME_FROM);
+        $this->mail->setFrom(Mailer::USERNAME, Mailer::NAME_FROM);
 
         $this->mail->addAddress($toAddress);
 
@@ -69,5 +69,3 @@ class Mailer
     }
     
 }
-
-// parei na aulda 106 - 32:20
